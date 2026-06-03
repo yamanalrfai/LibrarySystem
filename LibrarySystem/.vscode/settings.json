@@ -1,0 +1,9 @@
+{
+  "java.project.referencedLibraries": [
+    "/home/yaman/openjfx-sdk/javafx-sdk-21.0.10/lib/*.jar"
+  ],
+  "java.project.sourcePaths": [
+    "src"
+  ],
+  "java.project.outputPath": "build/classes"
+}
