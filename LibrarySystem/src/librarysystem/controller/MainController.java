@@ -11,13 +11,17 @@ public class MainController {
         this.stage = stage;
         this.view = new MainView();
         
-        // Listeners
         view.getBtnLogin().setOnAction(e -> {
             LoginController loginController = new LoginController(stage);
             stage.setScene(loginController.getView().getScene());
         });
-
-        // Add your Register and About listeners here!
+        view.getBtnRegister().setOnAction(e -> {
+            RegisterController registerController = new RegisterController(stage);
+            stage.setScene(registerController.getView().getScene());
+        });
+        view.getAboutLink().setOnAction(e -> {
+            System.out.println("About link clicked! (Link your controller here)");
+        });
     }
 
     public MainView getView() { return view; }

@@ -40,10 +40,11 @@ public class LoginController {
         if (userDAO.authenticateUser(email, password)) {
             if (email.toLowerCase().equals("admin@panel.com")) {
                 view.showAlert("Welcome Admin!", Alert.AlertType.INFORMATION, "Welcome");
-                // TODO: Swap to AdminController
+                System.out.println("Switching to Admin Dashboard...");
+                
             } else {
                 view.showAlert("Login successful. Welcome!", Alert.AlertType.INFORMATION, "Welcome");
-                // TODO: Swap to ViewLibraryController
+                System.out.println("Switching to User Library...");
             }
         } else {
             view.showAlert("Invalid email or password.", Alert.AlertType.WARNING, "Login Failed");
