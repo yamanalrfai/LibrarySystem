@@ -3,6 +3,8 @@ package librarysystem.controller;
 import javafx.scene.control.Alert;
 import javafx.stage.Stage;
 import librarysystem.dao.UserDAO;
+import librarysystem.model.User;
+import librarysystem.session.UserSession;
 import librarysystem.view.LoginView;
 
 public class LoginController {
@@ -37,12 +39,14 @@ public class LoginController {
             return;
         }
 
-        if (userDAO.authenticateUser(email, password)) {
-            if (email.toLowerCase().equals("admin@panel.com")) {
+        User user = userDAO.authenticateAndGetUser(email, password);
+
+        if (user != null) {
+            if (user.getId() == -1) {
                 view.showAlert("Welcome Admin!", Alert.AlertType.INFORMATION, "Welcome");
                 // Admin logic goes here later
             } else {
-                // FIXED: Swap to ViewLibraryController
+                UserSession.setCurrentUser(user.getId(), user.getUsername(), user.getEmail());
                 ViewLibraryController libraryController = new ViewLibraryController(stage);
                 stage.setScene(libraryController.getView().getScene());
             }

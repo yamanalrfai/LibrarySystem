@@ -8,18 +8,14 @@ public class Book {
     private String imageUrl;
     private String genre;
     private String virtualLink;
-    private int publishedYear;
-    private Timestamp createdAt;
 
-    public Book(int id, String title, String author, String imageUrl, String genre, String virtualLink, int publishedYear, Timestamp createdAt) {
+    public Book(int id, String title, String author, String imageUrl, String genre, String virtualLink) {
         this.id = id;
         this.title = title;
         this.author = author;
         this.imageUrl = imageUrl;
         this.genre = genre;
         this.virtualLink = virtualLink;
-        this.publishedYear = publishedYear;
-        this.createdAt = createdAt;
     }
 
     public int getId() { return id; }
@@ -28,6 +24,4 @@ public class Book {
     public String getImageUrl() { return imageUrl; }
     public String getGenre() { return genre; }
     public String getVirtualLink() { return virtualLink; }
-    public int getPublishedYear() { return publishedYear; }
-    public Timestamp getCreatedAt() { return createdAt; }
 }
