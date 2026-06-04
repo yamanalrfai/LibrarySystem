@@ -42,14 +42,9 @@ public class LoginController {
         User user = userDAO.authenticateAndGetUser(email, password);
 
         if (user != null) {
-            if (user.getId() == -1) {
-                view.showAlert("Welcome Admin!", Alert.AlertType.INFORMATION, "Welcome");
-                // Admin logic goes here later
-            } else {
-                UserSession.setCurrentUser(user.getId(), user.getUsername(), user.getEmail());
-                ViewLibraryController libraryController = new ViewLibraryController(stage);
-                stage.setScene(libraryController.getView().getScene());
-            }
+            UserSession.setCurrentUser(user.getId(), user.getUsername(), user.getEmail());
+            ViewLibraryController libraryController = new ViewLibraryController(stage);
+            stage.setScene(libraryController.getView().getScene());
         } else {
             view.showAlert("Invalid email or password.", Alert.AlertType.WARNING, "Login Failed");
         }

@@ -10,8 +10,6 @@ import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
-import javafx.scene.text.Font;
-import javafx.scene.text.FontWeight;
 import librarysystem.model.OrderRecord;
 
 public class OrderHistoryView {
@@ -26,8 +24,7 @@ public class OrderHistoryView {
         String bgColor = "#F4F4F4";
 
         Label title = new Label("My Orders");
-        title.setFont(Font.font("Segoe UI", FontWeight.BOLD, 24));
-        title.setStyle("-fx-text-fill: " + redwine + ";");
+        title.setStyle("-fx-text-fill: " + redwine + "; -fx-font-family: 'Segoe UI'; -fx-font-weight: bold; -fx-font-size: 24;");
 
         HBox header = new HBox(10,
             createHeaderLabel("Title", 240),
@@ -47,15 +44,15 @@ public class OrderHistoryView {
         scrollPane.setStyle("-fx-background-color: transparent; -fx-background: #FFFFFF;");
 
         lblEmpty = new Label("No orders yet.");
-        lblEmpty.setStyle("-fx-text-fill: #666666;");
+        lblEmpty.setStyle("-fx-text-fill: #666666; -fx-font-family: 'Segoe UI'; -fx-font-size: 14;");
 
         btnBack = new Button("Back to Library");
         btnBack.setPrefWidth(180);
-        btnBack.setStyle("-fx-background-color: transparent; -fx-text-fill: " + redwine + "; -fx-border-color: " + redwine + "; -fx-border-width: 2px; -fx-cursor: hand;");
+        btnBack.setStyle("-fx-background-color: transparent; -fx-text-fill: " + redwine + "; -fx-border-color: " + redwine + "; -fx-border-width: 2px; -fx-cursor: hand; -fx-font-family: 'Segoe UI'; -fx-font-size: 14; -fx-font-weight: bold;");
 
         btnLogout = new Button("Logout");
         btnLogout.setPrefWidth(180);
-        btnLogout.setStyle("-fx-background-color: " + redwine + "; -fx-text-fill: white; -fx-cursor: hand;");
+        btnLogout.setStyle("-fx-background-color: " + redwine + "; -fx-text-fill: white; -fx-cursor: hand; -fx-font-family: 'Segoe UI'; -fx-font-size: 14; -fx-font-weight: bold;");
 
         HBox buttons = new HBox(10, btnBack, btnLogout);
         buttons.setAlignment(Pos.CENTER);
@@ -71,7 +68,7 @@ public class OrderHistoryView {
     private Label createHeaderLabel(String text, double width) {
         Label label = new Label(text);
         label.setPrefWidth(width);
-        label.setFont(Font.font("Segoe UI", FontWeight.BOLD, 14));
+        label.setStyle("-fx-font-family: 'Segoe UI'; -fx-font-weight: bold; -fx-font-size: 14;");
         return label;
     }
 
@@ -103,7 +100,7 @@ public class OrderHistoryView {
     private Label createRowLabel(String text, double width) {
         Label label = new Label(text);
         label.setPrefWidth(width);
-        label.setFont(Font.font("Segoe UI", 14));
+        label.setStyle("-fx-font-family: 'Segoe UI'; -fx-font-size: 14;");
         return label;
     }
 

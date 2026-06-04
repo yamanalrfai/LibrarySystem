@@ -6,7 +6,6 @@ A Java-based Library Management System that allows users to register, log in, br
 
 * **User Authentication:** * Users can register with a username, email, and password.
   * Secure login with session tracking.
-  * Hardcoded Admin panel access.
 * **Book Management:** * View a complete catalog of available books (including titles, authors , and genres).
 * **Order Processing (Checkout):** * Users can check out multiple books at once.
   * Transactional database operations: When a book is checked out, an order record is generated, and the book is dynamically removed from the available pool.

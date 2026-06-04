@@ -7,7 +7,6 @@ import librarysystem.controller.MainController;
 public class Main extends Application {
     @Override
     public void start(Stage primaryStage) {
-        // MVC Start! Initialize the Main Controller
         MainController mainController = new MainController(primaryStage);
         
         primaryStage.setTitle("LibraryX");

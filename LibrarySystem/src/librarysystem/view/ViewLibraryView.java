@@ -11,8 +11,6 @@ import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
-import javafx.scene.text.Font;
-import javafx.scene.text.FontWeight;
 import librarysystem.model.Book;
 
 public class ViewLibraryView {
@@ -30,11 +28,10 @@ public class ViewLibraryView {
         String bgColor = "#F4F4F4";
 
         Label title = new Label("Library Collection");
-        title.setFont(Font.font("Segoe UI", FontWeight.BOLD, 24));
-        title.setStyle("-fx-text-fill: " + redwine + ";");
+        title.setStyle("-fx-text-fill: " + redwine + "; -fx-font-family: 'Segoe UI'; -fx-font-weight: bold; -fx-font-size: 24;");
 
         lblUser = new Label("Signed in user");
-        lblUser.setStyle("-fx-text-fill: #555555; -fx-font-size: 13;");
+        lblUser.setStyle("-fx-text-fill: #555555; -fx-font-size: 13; -fx-font-family: 'Segoe UI';");
 
         HBox header = createRow("Title", "Author", "Genre", "Action", true, null);
         header.setStyle("-fx-background-color: #DDDDDD; -fx-padding: 10;");
@@ -51,14 +48,13 @@ public class ViewLibraryView {
         bookSection.setPrefWidth(520);
 
         Label cartTitle = new Label("Cart");
-        cartTitle.setFont(Font.font("Segoe UI", FontWeight.BOLD, 18));
-        cartTitle.setStyle("-fx-text-fill: " + redwine + ";");
+        cartTitle.setStyle("-fx-text-fill: " + redwine + "; -fx-font-family: 'Segoe UI'; -fx-font-weight: bold; -fx-font-size: 18;");
 
         cartContainer = new VBox(5);
         cartContainer.setPadding(new Insets(5));
 
         lblCartEmpty = new Label("Your cart is empty.");
-        lblCartEmpty.setStyle("-fx-text-fill: #666666;");
+        lblCartEmpty.setStyle("-fx-text-fill: #666666; -fx-font-family: 'Segoe UI';");
 
         ScrollPane cartScrollPane = new ScrollPane(cartContainer);
         cartScrollPane.setFitToWidth(true);
@@ -67,15 +63,15 @@ public class ViewLibraryView {
 
         btnCheckout = new Button("Checkout Cart");
         btnCheckout.setPrefWidth(180);
-        btnCheckout.setStyle("-fx-background-color: " + redwine + "; -fx-text-fill: white; -fx-cursor: hand;");
+        btnCheckout.setStyle("-fx-background-color: " + redwine + "; -fx-text-fill: white; -fx-cursor: hand; -fx-font-family: 'Segoe UI';");
 
         btnViewOrders = new Button("View My Orders");
         btnViewOrders.setPrefWidth(180);
-        btnViewOrders.setStyle("-fx-background-color: transparent; -fx-text-fill: " + redwine + "; -fx-border-color: " + redwine + "; -fx-border-width: 2px; -fx-cursor: hand;");
+        btnViewOrders.setStyle("-fx-background-color: transparent; -fx-text-fill: " + redwine + "; -fx-border-color: " + redwine + "; -fx-border-width: 2px; -fx-cursor: hand; -fx-font-family: 'Segoe UI';");
 
         btnLogout = new Button("Logout");
         btnLogout.setPrefWidth(180);
-        btnLogout.setStyle("-fx-background-color: " + redwine + "; -fx-text-fill: white; -fx-cursor: hand;");
+        btnLogout.setStyle("-fx-background-color: " + redwine + "; -fx-text-fill: white; -fx-cursor: hand; -fx-font-family: 'Segoe UI';");
 
         VBox cartSection = new VBox(10, cartTitle, cartScrollPane, lblCartEmpty, btnCheckout, btnViewOrders, btnLogout);
         cartSection.setPrefWidth(260);
@@ -135,24 +131,24 @@ public class ViewLibraryView {
         lblGenre.setPrefWidth(120);
 
         if (isHeader) {
-            lblTitle.setFont(Font.font("Segoe UI", FontWeight.BOLD, 14));
-            lblAuthor.setFont(Font.font("Segoe UI", FontWeight.BOLD, 14));
-            lblGenre.setFont(Font.font("Segoe UI", FontWeight.BOLD, 14));
+            lblTitle.setStyle("-fx-font-family: 'Segoe UI'; -fx-font-weight: bold; -fx-font-size: 14;");
+            lblAuthor.setStyle("-fx-font-family: 'Segoe UI'; -fx-font-weight: bold; -fx-font-size: 14;");
+            lblGenre.setStyle("-fx-font-family: 'Segoe UI'; -fx-font-weight: bold; -fx-font-size: 14;");
             Label lblAction = new Label(actionText);
             lblAction.setPrefWidth(120);
-            lblAction.setFont(Font.font("Segoe UI", FontWeight.BOLD, 14));
+            lblAction.setStyle("-fx-font-family: 'Segoe UI'; -fx-font-weight: bold; -fx-font-size: 14;");
             HBox row = new HBox(10, lblTitle, lblAuthor, lblGenre, lblAction);
             row.setPadding(new Insets(5));
             return row;
         } else {
-            lblTitle.setFont(Font.font("Segoe UI", 14));
-            lblAuthor.setFont(Font.font("Segoe UI", 14));
-            lblGenre.setFont(Font.font("Segoe UI", 14));
+            lblTitle.setStyle("-fx-font-family: 'Segoe UI'; -fx-font-size: 14;");
+            lblAuthor.setStyle("-fx-font-family: 'Segoe UI'; -fx-font-size: 14;");
+            lblGenre.setStyle("-fx-font-family: 'Segoe UI'; -fx-font-size: 14;");
         }
 
         Button actionButton = new Button(actionText);
         actionButton.setPrefWidth(120);
-        actionButton.setStyle("-fx-background-color: #8B0000; -fx-text-fill: white; -fx-cursor: hand;");
+        actionButton.setStyle("-fx-background-color: #8B0000; -fx-text-fill: white; -fx-cursor: hand; -fx-font-family: 'Segoe UI';");
         if (action != null) {
             actionButton.setOnAction(e -> action.run());
         }
