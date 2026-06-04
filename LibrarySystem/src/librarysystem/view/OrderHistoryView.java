@@ -11,19 +11,23 @@ import javafx.scene.control.ScrollPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import librarysystem.model.OrderRecord;
+import librarysystem.controller.ThemeController;
 
 public class OrderHistoryView {
     private Scene scene;
     private Button btnBack;
     private Button btnLogout;
+    private Button btnTheme;
     private VBox orderContainer;
     private Label lblEmpty;
+    private Label title;
+    private javafx.scene.layout.VBox root;
 
     public OrderHistoryView() {
-        String redwine = "#8B0000";
-        String bgColor = "#F4F4F4";
+        String redwine = ThemeController.redwine;
+        String bgColor = ThemeController.bgColor;
 
-        Label title = new Label("My Orders");
+        title = new Label("My Orders");
         title.setStyle("-fx-text-fill: " + redwine + "; -fx-font-family: 'Segoe UI'; -fx-font-weight: bold; -fx-font-size: 24;");
 
         HBox header = new HBox(10,
@@ -46,6 +50,7 @@ public class OrderHistoryView {
         lblEmpty = new Label("No orders yet.");
         lblEmpty.setStyle("-fx-text-fill: #666666; -fx-font-family: 'Segoe UI'; -fx-font-size: 14;");
 
+
         btnBack = new Button("Back to Library");
         btnBack.setPrefWidth(180);
         btnBack.setStyle("-fx-background-color: transparent; -fx-text-fill: " + redwine + "; -fx-border-color: " + redwine + "; -fx-border-width: 2px; -fx-cursor: hand; -fx-font-family: 'Segoe UI'; -fx-font-size: 14; -fx-font-weight: bold;");
@@ -54,10 +59,15 @@ public class OrderHistoryView {
         btnLogout.setPrefWidth(180);
         btnLogout.setStyle("-fx-background-color: " + redwine + "; -fx-text-fill: white; -fx-cursor: hand; -fx-font-family: 'Segoe UI'; -fx-font-size: 14; -fx-font-weight: bold;");
 
-        HBox buttons = new HBox(10, btnBack, btnLogout);
+        btnTheme = new Button("Change Color");
+        btnTheme.setPrefWidth(180);
+        btnTheme.setStyle("-fx-background-color: transparent; -fx-text-fill: " + redwine + "; -fx-border-color: " + redwine + "; -fx-border-width: 2px; -fx-cursor: hand; -fx-font-family: 'Segoe UI'; -fx-font-size: 14; -fx-font-weight: bold;");
+        btnTheme.setOnAction(e -> { ThemeController.switchToDarkMode(); applyTheme(); });
+
+        HBox buttons = new HBox(10, btnBack, btnLogout, btnTheme);
         buttons.setAlignment(Pos.CENTER);
 
-        VBox root = new VBox(15, title, header, scrollPane, lblEmpty, buttons);
+        root = new VBox(15, title, header, scrollPane, lblEmpty, buttons);
         root.setPadding(new Insets(20));
         root.setAlignment(Pos.CENTER);
         root.setStyle("-fx-background-color: " + bgColor + ";");
@@ -115,4 +125,16 @@ public class OrderHistoryView {
     public Scene getScene() { return scene; }
     public Button getBtnBack() { return btnBack; }
     public Button getBtnLogout() { return btnLogout; }
+
+    private void applyTheme() {
+        String redwine = ThemeController.redwine;
+        String bgColor = ThemeController.bgColor;
+
+        title.setStyle("-fx-text-fill: " + redwine + "; -fx-font-family: 'Segoe UI'; -fx-font-weight: bold; -fx-font-size: 24;");
+        root.setStyle("-fx-background-color: " + bgColor + ";");
+
+        btnBack.setStyle("-fx-background-color: transparent; -fx-text-fill: " + redwine + "; -fx-border-color: " + redwine + "; -fx-border-width: 2px; -fx-cursor: hand; -fx-font-family: 'Segoe UI'; -fx-font-size: 14; -fx-font-weight: bold;");
+        btnLogout.setStyle("-fx-background-color: " + redwine + "; -fx-text-fill: white; -fx-cursor: hand; -fx-font-family: 'Segoe UI'; -fx-font-size: 14; -fx-font-weight: bold;");
+        btnTheme.setStyle("-fx-background-color: transparent; -fx-text-fill: " + redwine + "; -fx-border-color: " + redwine + "; -fx-border-width: 2px; -fx-cursor: hand; -fx-font-family: 'Segoe UI'; -fx-font-size: 14; -fx-font-weight: bold;");
+    }
 }

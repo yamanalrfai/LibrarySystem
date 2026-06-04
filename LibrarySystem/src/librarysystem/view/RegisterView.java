@@ -6,7 +6,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
-
+import librarysystem.controller.ThemeController;
 public class RegisterView {
     private Scene scene;
     private TextField txtUsername;
@@ -14,16 +14,21 @@ public class RegisterView {
     private PasswordField txtPassword;
     private Button btnRegister;
     private Button btnBack;
+    private Button btnTheme;
+
+    private Text title;
+    private Text subtitle;
+    private javafx.scene.layout.VBox root;
 
     public RegisterView() {
-        String redwine = "#8B0000";
-        String bgColor = "#F4F4F4";
-        String subtitleColor = "#5A5A5A";
+        String redwine = ThemeController.redwine;
+        String bgColor = ThemeController.bgColor;
+        String subtitleColor = ThemeController.subtitleColor;
 
-        Text title = new Text("  Create Account");
+        title = new Text("  Create Account");
         title.setStyle("-fx-fill: " + redwine + "; -fx-font-family: 'Segoe UI'; -fx-font-weight: 800; -fx-font-size: 26;"); // 800 maps to Extra-Bold
 
-        Text subtitle = new Text("Join LibraryX today");
+        subtitle = new Text("Join LibraryX today");
         subtitle.setStyle("-fx-fill: " + subtitleColor + "; -fx-font-family: 'Segoe UI'; -fx-font-size: 15;");
 
         VBox titleBox = new VBox(5, title, subtitle);
@@ -51,12 +56,14 @@ public class RegisterView {
 
         btnRegister = createStyledButton("Register", redwine);
         btnBack = createStyledButton("  Back", redwine);
+        btnTheme = createStyledButton("Change Color", redwine);
+        btnTheme.setOnAction(e -> { ThemeController.switchToDarkMode(); applyTheme(); });
 
-        VBox buttons = new VBox(15, btnRegister, btnBack);
+        VBox buttons = new VBox(15, btnRegister, btnBack, btnTheme);
         buttons.setAlignment(Pos.CENTER);
         buttons.setMaxWidth(300);
 
-        VBox root = new VBox(25, titleBox, fieldBox, buttons);
+        root = new VBox(25, titleBox, fieldBox, buttons);
         root.setAlignment(Pos.CENTER);
         root.setPadding(new Insets(50));
         root.setStyle("-fx-background-color: " + bgColor + ";");
@@ -76,6 +83,29 @@ public class RegisterView {
         btn.setOnMouseEntered(e -> btn.setStyle(hoverStyle));
         btn.setOnMouseExited(e -> btn.setStyle(defaultStyle));
         return btn;
+    }
+
+    private void updateButtonStyle(Button btn, String color) {
+        String fontStyle = "-fx-font-family: 'Segoe UI'; -fx-font-weight: 600; -fx-font-size: 16; ";
+        String defaultStyle = fontStyle + "-fx-background-color: transparent; -fx-text-fill: " + color + "; -fx-border-color: " + color + "; -fx-border-width: 2px; -fx-border-radius: 12px; -fx-background-radius: 12px; -fx-cursor: hand;";
+        String hoverStyle = fontStyle + "-fx-background-color: " + color + "; -fx-text-fill: white; -fx-border-color: " + color + "; -fx-border-width: 2px; -fx-border-radius: 12px; -fx-background-radius: 12px; -fx-cursor: hand;";
+        btn.setStyle(defaultStyle);
+        btn.setOnMouseEntered(e -> btn.setStyle(hoverStyle));
+        btn.setOnMouseExited(e -> btn.setStyle(defaultStyle));
+    }
+
+    private void applyTheme() {
+        String redwine = ThemeController.redwine;
+        String bgColor = ThemeController.bgColor;
+        String subtitleColor = ThemeController.subtitleColor;
+
+        title.setStyle("-fx-fill: " + redwine + "; -fx-font-family: 'Segoe UI'; -fx-font-weight: 800; -fx-font-size: 26;");
+        subtitle.setStyle("-fx-fill: " + subtitleColor + "; -fx-font-family: 'Segoe UI'; -fx-font-size: 15;");
+        root.setStyle("-fx-background-color: " + bgColor + ";");
+
+        updateButtonStyle(btnRegister, redwine);
+        updateButtonStyle(btnBack, redwine);
+        updateButtonStyle(btnTheme, redwine);
     }
 
     public Scene getScene() { return scene; }

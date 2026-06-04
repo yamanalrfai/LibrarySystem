@@ -12,22 +12,26 @@ import javafx.scene.control.ScrollPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import librarysystem.model.Book;
+import librarysystem.controller.ThemeController;
 
 public class ViewLibraryView {
     private Scene scene;
     private Button btnLogout;
     private Button btnCheckout;
     private Button btnViewOrders;
+    private Button btnTheme;
     private VBox bookContainer;
     private VBox cartContainer;
     private Label lblUser;
     private Label lblCartEmpty;
+    private Label title;
+    private javafx.scene.layout.VBox root;
 
     public ViewLibraryView() {
-        String redwine = "#8B0000";
-        String bgColor = "#F4F4F4";
+        String redwine = ThemeController.redwine;
+        String bgColor = ThemeController.bgColor;
 
-        Label title = new Label("Library Collection");
+        title = new Label("Library Collection");
         title.setStyle("-fx-text-fill: " + redwine + "; -fx-font-family: 'Segoe UI'; -fx-font-weight: bold; -fx-font-size: 24;");
 
         lblUser = new Label("Signed in user");
@@ -73,13 +77,21 @@ public class ViewLibraryView {
         btnLogout.setPrefWidth(180);
         btnLogout.setStyle("-fx-background-color: " + redwine + "; -fx-text-fill: white; -fx-cursor: hand; -fx-font-family: 'Segoe UI';");
 
+        btnTheme = new Button("Change Color");
+        btnTheme.setPrefWidth(180);
+        btnTheme.setStyle("-fx-background-color: transparent; -fx-text-fill: " + redwine + "; -fx-border-color: " + redwine + "; -fx-border-width: 2px; -fx-cursor: hand; -fx-font-family: 'Segoe UI';");
+        btnTheme.setOnAction(e -> { ThemeController.switchToDarkMode(); applyTheme(); });
+
         VBox cartSection = new VBox(10, cartTitle, cartScrollPane, lblCartEmpty, btnCheckout, btnViewOrders, btnLogout);
         cartSection.setPrefWidth(260);
 
         HBox mainContent = new HBox(15, bookSection, cartSection);
         mainContent.setAlignment(Pos.CENTER);
 
-        VBox root = new VBox(15, title, lblUser, mainContent);
+        HBox footerButtons = new HBox(10, btnCheckout, btnViewOrders, btnLogout, btnTheme);
+        footerButtons.setAlignment(Pos.CENTER);
+
+        root = new VBox(15, title, lblUser, mainContent, footerButtons);
         root.setPadding(new Insets(20));
         root.setAlignment(Pos.CENTER);
         root.setStyle("-fx-background-color: " + bgColor + ";");
@@ -168,6 +180,19 @@ public class ViewLibraryView {
     public Button getBtnCheckout() { return btnCheckout; }
     public Button getBtnViewOrders() { return btnViewOrders; }
     public void setUserLabel(String text) { lblUser.setText(text); }
+
+    private void applyTheme() {
+        String redwine = ThemeController.redwine;
+        String bgColor = ThemeController.bgColor;
+        title.setStyle("-fx-text-fill: " + redwine + "; -fx-font-family: 'Segoe UI'; -fx-font-weight: bold; -fx-font-size: 24;");
+        lblUser.setStyle("-fx-text-fill: #555555; -fx-font-size: 13; -fx-font-family: 'Segoe UI';");
+        root.setStyle("-fx-background-color: " + bgColor + ";");
+
+        btnCheckout.setStyle("-fx-background-color: " + redwine + "; -fx-text-fill: white; -fx-cursor: hand; -fx-font-family: 'Segoe UI';");
+        btnLogout.setStyle("-fx-background-color: " + redwine + "; -fx-text-fill: white; -fx-cursor: hand; -fx-font-family: 'Segoe UI';");
+        btnViewOrders.setStyle("-fx-background-color: transparent; -fx-text-fill: " + redwine + "; -fx-border-color: " + redwine + "; -fx-border-width: 2px; -fx-cursor: hand; -fx-font-family: 'Segoe UI';");
+        btnTheme.setStyle("-fx-background-color: transparent; -fx-text-fill: " + redwine + "; -fx-border-color: " + redwine + "; -fx-border-width: 2px; -fx-cursor: hand; -fx-font-family: 'Segoe UI';");
+    }
 
     public void showAlert(String msg, Alert.AlertType type, String title) {
         Alert alert = new Alert(type);
