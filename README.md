@@ -20,6 +20,12 @@ The project follows a modular architecture divided into the following key packag
 * `librarysystem.dao`: Contains the Data Access Objects (`BookDAO`, `UserDAO`, `OrderDAO`) responsible for executing SQL queries and database transactions.
 * `librarysystem.session`: Contains the `UserSession` utility for tracking the currently authenticated user globally.
 
+## technology
+
+I used into this project the fllowing:
+1) VM to use window -> to do the eval for this project
+2) javaFX -> the main platfrom
+3) xampp -> phpadminpage and the sql stuff
 ## Class Diagram
 
 Below is the Basic class diagram
