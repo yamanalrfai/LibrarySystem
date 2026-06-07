@@ -13,7 +13,6 @@ public class MainView {
     private Scene scene;
     private Button btnLogin;
     private Button btnRegister;
-    private Hyperlink aboutLink;
     private Button btnTheme;
 
     private Text title;
@@ -40,16 +39,13 @@ public class MainView {
         btnTheme = createStyledButton("Change Color", redwine);
         btnTheme.setOnAction(e -> { ThemeController.switchToDarkMode(); applyTheme(); });
 
-        aboutLink = new Hyperlink("Learn more about LibraryX");
-        aboutLink.setStyle("-fx-text-fill: " + redwine + "; -fx-font-family: 'Segoe UI'; -fx-font-size: 13;");
-
         Text footer = new Text("LibraryX   Elevate your reading experience.");
         footer.setStyle("-fx-fill: " + redwine + "; -fx-font-family: 'Segoe UI'; -fx-font-weight: 600; -fx-font-size: 13;"); // 600 maps to Semi-Bold
 
         VBox buttons = new VBox(10, btnLogin, btnRegister, btnTheme);
         buttons.setAlignment(Pos.CENTER);
 
-        root = new VBox(15, title, subtitle, secondSubtitle, buttons, aboutLink, footer);
+        root = new VBox(15, title, subtitle, secondSubtitle, buttons, footer);
         root.setAlignment(Pos.CENTER);
         root.setPadding(new Insets(60));
         root.setStyle("-fx-background-color: " + bgColor + ";");
@@ -94,11 +90,9 @@ public class MainView {
         updateButtonStyle(btnLogin, redwine);
         updateButtonStyle(btnRegister, redwine);
         updateButtonStyle(btnTheme, redwine);
-        aboutLink.setStyle("-fx-text-fill: " + redwine + "; -fx-font-family: 'Segoe UI'; -fx-font-size: 13;");
     }
 
     public Scene getScene() { return scene; }
     public Button getBtnLogin() { return btnLogin; }
     public Button getBtnRegister() { return btnRegister; }
-    public Hyperlink getAboutLink() { return aboutLink; }
 }
